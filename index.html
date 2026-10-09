@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Life Dashboard</title>
+  <script>
+    (function(){try{var t=localStorage.getItem('tld_theme');if(t==='dark')document.documentElement.classList.add('dark-mode');}catch(e){}})();
+  </script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Life Dashboard</h1>
+    <button id="theme-toggle" aria-label="Switch to dark mode">&#127769;</button>
+  </header>
+  <div id="storage-warning" hidden role="alert">
+    &#9888; Storage unavailable &mdash; data will not be persisted this session.
+  </div>
+  <main>
+    <section id="greeting-widget" aria-label="Greeting">
+      <div id="clock" aria-live="polite"></div>
+      <div id="date-display"></div>
+      <div id="greeting-text"></div>
+      <button id="edit-name-btn" aria-label="Edit your name">&#9998; Edit Name</button>
+      <form id="name-form" hidden>
+        <label for="name-input">Your name</label>
+        <input id="name-input" type="text" maxlength="50" autocomplete="off" placeholder="Enter your name">
+        <div class="btn-row">
+          <button type="submit">Save</button>
+          <button type="button" id="cancel-name-btn">Cancel</button>
+        </div>
+        <div id="name-error" class="error-msg" role="alert" aria-live="assertive"></div>
+      </form>
+    </section>
+    <section id="timer-widget" aria-label="Focus Timer">
+      <h2>Focus Timer</h2>
+      <div id="timer-display" aria-live="polite" aria-label="Time remaining">25:00</div>
+      <div id="timer-controls">
+        <button id="timer-start">&#9654; Start</button>
+        <button id="timer-stop" disabled>&#9646;&#9646; Stop</button>
+        <button id="timer-reset">&#8635; Reset</button>
+      </div>
+      <div id="timer-alert" class="timer-alert" role="alert" aria-live="assertive" hidden>
+        Focus session complete! Time for a break.
+      </div>
+    </section>
+    <section id="task-manager" aria-label="Task Manager">
+      <h2>To-Do List</h2>
+      <form id="task-form">
+        <label for="task-input" class="sr-only">New task</label>
+        <input id="task-input" type="text" maxlength="500" placeholder="Add a new task..." autocomplete="off">
+        <button type="submit">Add</button>
+        <div id="task-add-error" class="error-msg" role="alert" aria-live="assertive"></div>
+      </form>
+      <div id="task-sort-controls">
+        <label for="task-sort">Sort:</label>
+        <select id="task-sort" aria-label="Sort tasks by">
+          <option value="active-first" selected>Active First</option>
+          <option value="completed-first">Completed First</option>
+          <option value="date-added">Date Added</option>
+        </select>
+      </div>
+      <ul id="task-list" aria-live="polite" aria-label="Tasks"></ul>
+    </section>
+    <section id="quick-links" aria-label="Quick Links">
+      <h2>Quick Links</h2>
+      <form id="link-form">
+        <label for="link-label-input">Label</label>
+        <input id="link-label-input" type="text" maxlength="100" placeholder="Site name" autocomplete="off">
+        <label for="link-url-input">URL</label>
+        <input id="link-url-input" type="url" maxlength="2048" placeholder="https://example.com" autocomplete="off">
+        <button type="submit">Add Link</button>
+        <div id="link-add-error" class="error-msg" role="alert" aria-live="assertive"></div>
+      </form>
+      <ul id="link-list" aria-live="polite" aria-label="Quick Links"></ul>
+    </section>
+  </main>
+  <script src="js/script.js"></script>
+</body>
+</html>
